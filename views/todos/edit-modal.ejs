@@ -1,0 +1,44 @@
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 class="modal-title">Edit Todo</h3>
+      <button type="button" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <form
+        method="post"
+        action="/todos/<%= todo.id %>?_method=PATCH"
+        hx-include="[name=title]"
+        hx-target="body"
+        hx-swap="innerHTML"
+      >
+        <input type="hidden" name="_method" value="PATCH" />
+        <div class="mb-4">
+          <label for="title" class="block">Title</label>
+          <input
+            type="text"
+            name="title"
+            id="title"
+            value="<%= todo.title %>"
+            class="w-full p-2 border rounded mt-1"
+          />
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Save</button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            onclick="closeModal()"
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+  function closeModal() {
+    document.getElementById('modal').innerHTML = '';
+  }
+</script>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Todo App - Register</title>
+    <link href="/styles.css" rel="stylesheet" />
+    <script src="https://unpkg.com/htmx.org@1.8.0"></script>
+  </head>
+  <body class="bg-gray-100">
+    <header class="p-4 bg-blue-600 text-white">
+      <div class="container mx-auto flex justify-between items-center">
+        <h1 class="text-2xl font-bold">Todo App</h1>
+      </div>
+    </header>
+    <main class="container mx-auto mt-8">
+      <div class="max-w-md mx-auto bg-white p-8 shadow-lg rounded-lg">
+        <h2 class="text-2xl font-bold mb-4">Register</h2>
+        <form method="post" action="/auth/register">
+          <div class="mb-4">
+            <label for="name" class="block text-gray-700">Name</label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              class="w-full p-2 border border-gray-300 rounded mt-1"
+            />
+          </div>
+          <div class="mb-4">
+            <label for="email" class="block text-gray-700">Email</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              class="w-full p-2 border border-gray-300 rounded mt-1"
+            />
+          </div>
+          <div class="mb-4">
+            <label for="password" class="block text-gray-700">Password</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              class="w-full p-2 border border-gray-300 rounded mt-1"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+        <div class="mt-4">
+          <a href="/auth/login" class="text-blue-600"
+            >Already have an account? Login</a
+          >
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

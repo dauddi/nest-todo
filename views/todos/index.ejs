@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Todo App - Todos</title>
+  <link href="/styles.css" rel="stylesheet">
+  <script src="https://unpkg.com/htmx.org@1.8.0"></script>
+</head>
+<body>
+  <header>
+    <div class="container flex justify-between items-center">
+      <h1 class="text-2xl">Todo App</h1>
+      <% if (user) { %>
+        <div>
+          <span class="mr-4">Welcome, <%= user.name %></span>
+          <a href="/auth/logout" class="btn btn-secondary">Logout</a>
+        </div>
+      <% } %>
+    </div>
+  </header>
+  <main class="container mt-8">
+    <div class="bg-white p-8 shadow-lg rounded-lg">
+      <h2 class="text-2xl mb-4">Todo List</h2>
+      <form method="post" action="/todos" class="mb-4">
+        <div class="flex items-center">
+          <input type="text" name="title" class="flex-1 p-2 border rounded" placeholder="Add new todo">
+          <button type="submit" class="btn btn-primary ml-2">Add</button>
+        </div>
+      </form>
+      <ul>
+        <% todos.forEach(todo => { %>
+          <li class="flex justify-between items-center p-2 border-b">
+            <span><%= todo.title %></span>
+            <div class="flex items-center">
+              <button hx-get="/todos/<%= todo.id %>/edit" hx-target="#modal" class="btn btn-secondary mr-2">Edit</button>
+              <form method="post" action="/todos/<%= todo.id %>?_method=DELETE" class="mr-2">
+                <input type="hidden" name="_method" value="DELETE">
+                <button class="btn btn-danger">Delete</button>
+              </form>
+              <form method="post" action="/todos/<%= todo.id %>/done?_method=PATCH">
+                <input type="hidden" name="_method" value="PATCH">
+                <button class="btn btn-success"><%= todo.isDone ? 'Undone' : 'Done' %></button>
+              </form>
+            </div>
+          </li>
+        <% }) %>
+      </ul>
+    </div>
+    <div id="modal"></div>
+  </main>
+</body>
+</html>
