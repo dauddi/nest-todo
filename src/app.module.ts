@@ -23,13 +23,14 @@ import configuration, { DBConfig, DBType } from './config/configuration';
           port: dbConfig.port,
           username: dbConfig.username,
           password: dbConfig.password,
-          database: `${dbConfig.type === DBType.postgres ? `${dbConfig.database}?project=${dbConfig.endpointId}` : dbConfig.database}`,
+          database: dbConfig.database,
           entities: ['dist/**/*.entity{.ts,.js}'],
           synchronize: true,
           ssl: true,
           extra: {
             ssl: {
-              rejectUnauthorized: true,
+              rejectUnauthorized: false,
+              sslmode: require,
             },
           },
         };
