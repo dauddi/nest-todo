@@ -3,18 +3,31 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { TodosModule } from './todos/todos.module';
 import { AppController } from './app.controller';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import configuration, { DBConfig, DBType } from './config/configuration';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'mysql',
-      password: 'Test@1234',
-      database: 'todos',
-      entities: ['dist/**/*.entity{.ts,.js}'],
-      synchronize: true,
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [configuration],
+    }),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: async (configService: ConfigService) => {
+        const dbConfig = configService.get<DBConfig>('database');
+        return {
+          type: dbConfig.type || DBType.postgres,
+          host: dbConfig.host,
+          port: dbConfig.port,
+          username: dbConfig.username,
+          password: dbConfig.password,
+          database: `${dbConfig.type === DBType.postgres ? `${dbConfig.database}?project=${dbConfig.endpointId}` : dbConfig.database}`,
+          entities: ['dist/**/*.entity{.ts,.js}'],
+          synchronize: true,
+        };
+      },
     }),
     AuthModule,
     TodosModule,
