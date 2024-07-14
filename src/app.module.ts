@@ -26,6 +26,12 @@ import configuration, { DBConfig, DBType } from './config/configuration';
           database: `${dbConfig.type === DBType.postgres ? `${dbConfig.database}?project=${dbConfig.endpointId}` : dbConfig.database}`,
           entities: ['dist/**/*.entity{.ts,.js}'],
           synchronize: true,
+          ssl: true,
+          extra: {
+            ssl: {
+              rejectUnauthorized: true,
+            },
+          },
         };
       },
     }),
