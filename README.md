@@ -1,4 +1,4 @@
-# NestJS Todo Application
+# nestjs x htmx Todo Application
 
 [![codecov](https://codecov.io/gh/dauddi/nest-todo/branch/main/graph/badge.svg?token=c6ca1570-d1e2-4639-b78d-19b80fd26c39)](https://codecov.io/gh/your-username/nest-todo)
 
