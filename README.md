@@ -1,5 +1,7 @@
 # NestJS Todo Application
 
+[![codecov](https://codecov.io/gh/your-username/nest-todo/branch/main/graph/badge.svg?token=YOUR_TOKEN)](https://codecov.io/gh/your-username/nest-todo)
+
 This project is a simple Todo application built with [NestJS](https://nestjs.com/), TypeORM, MySQL, and [htmx](https://htmx.org/). The application includes authentication, CRUD operations for todos, and a clean and responsive UI with support for E2E tests.
 
 ## Table of Contents
