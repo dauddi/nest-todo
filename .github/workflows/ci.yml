@@ -3,17 +3,13 @@ name: CI
 on:
   push:
     branches:
-      - develop
-      - beta
       - main
   pull_request:
     branches:
-      - develop
-      - beta
       - main
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
 
     strategy:
@@ -30,13 +26,24 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install dependencies
-        run: npm install
+        run: |
+          echo -e "\e[34mInstalling dependencies...\e[0m"
+          npm install
 
       - name: Run tests
-        run: npm run test
+        run: |
+          echo -e "\e[32mRunning unit tests...\e[0m"
+          npm run test
+
+      # - name: Run E2E tests
+      #   run: |
+      #     echo -e "\e[32mRunning E2E tests...\e[0m"
+      #     npm run test:e2e
 
       - name: Generate coverage report
-        run: npm run test:cov
+        run: |
+          echo -e "\e[33mGenerating coverage report...\e[0m"
+          npm run test:cov
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4.0.1
