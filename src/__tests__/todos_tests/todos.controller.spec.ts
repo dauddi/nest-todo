@@ -1,11 +1,11 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { TodosController } from './todos.controller';
-import { TodosService } from './todos.service';
-import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { JwtService } from '@nestjs/jwt';
-import { CreateTodoDto } from './dto/create-todo.dto';
-import { UpdateTodoDto } from './dto/update-todo.dto';
-import { Todo } from './entities/todo.entity';
+import { Test, TestingModule } from '@nestjs/testing';
+import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
+import { CreateTodoDto } from '../../todos/dto/create-todo.dto';
+import { UpdateTodoDto } from '../../todos/dto/update-todo.dto';
+import { Todo } from '../../todos/entities/todo.entity';
+import { TodosController } from '../../todos/todos.controller';
+import { TodosService } from '../../todos/todos.service';
 
 describe('TodosController', () => {
   let controller: TodosController;

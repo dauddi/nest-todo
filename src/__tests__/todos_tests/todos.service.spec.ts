@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { TodosService } from './todos.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { Todo } from './entities/todo.entity';
 import { Repository } from 'typeorm';
+import { TodosService } from '../../todos/todos.service';
+import { Todo } from '../../todos/entities/todo.entity';
 
 describe('TodosService', () => {
   let service: TodosService;

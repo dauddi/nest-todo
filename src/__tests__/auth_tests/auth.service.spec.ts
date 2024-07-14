@@ -1,12 +1,12 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { AuthService } from './auth.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
-import { RegisterDto } from './dto/register.dto';
-import { LoginDto } from './dto/login.dto';
 import * as bcrypt from 'bcryptjs';
+import { AuthService } from '../../auth/auth.service';
+import { LoginDto } from '../../auth/dto/login.dto';
+import { RegisterDto } from '../../auth/dto/register.dto';
+import { User } from '../../auth/entities/user.entity';
 
 describe('AuthService', () => {
   let service: AuthService;
